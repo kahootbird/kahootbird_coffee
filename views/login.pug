@@ -1,8 +1,10 @@
 extends layout
 
 block content
+  include header.pug
   h1= title
   p Welcome to kahootbirds #{title} coffee shop
+  include navbar.pug
   p This is the begining
   p bootstrap implemented here
    button.btn.btn-primary.float-right.mt-4(id='btn', type='submit', disabled=true ) Next
@@ -14,3 +16,5 @@ block content
         |          password:
         input(type='text', name='password', value='')
       input(type='submit', value='Submit' class="btn btn-primary")
+
+  include footer.pug

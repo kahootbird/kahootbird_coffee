@@ -1,0 +1,16 @@
+extends layout
+block content
+  include header.pug
+  h1= title
+  p Welcome to kahootbirds #{title} coffee shop
+  include navbar.pug
+
+  p DASHBOARD
+  br
+  |
+  p
+   button.btn.btn-primary.float-right.mt-4(id='btn', type='submit', disabled=true ) Next
+
+
+   p This is the dashboard
+    include footer.pug
