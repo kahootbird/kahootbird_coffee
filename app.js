@@ -11,8 +11,33 @@ var storeRouter = require('./routes/store');
 
 var login = require('./routes/login');
 const {v4: uuidv4} = require("uuid")
-
 var app = express();
+
+/*
+PASSPORT
+*/
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const mongoDb = "YOUR MONGO URL HERE";
+mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "mongo connection error"));
+
+const User = mongoose.model(
+  "User",
+  new Schema({
+    username: { type: String, required: true },
+    password: { type: String, required: true }
+  })
+);
+
+/* END
+*/
+
+
 
 const bodyparser = require("body-parser")
 const session = require("express-session")
