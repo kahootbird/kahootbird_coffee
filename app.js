@@ -40,16 +40,17 @@ const User = mongoose.model(
 
 
 const bodyparser = require("body-parser")
-const session = require("express-session")
+
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended:true}))
-
+/*
+const session = require("express-session")
 app.use(session({
   secret: uuidv4(),
   resave: false,
   saveUninitalized: true
 }));
-
+*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

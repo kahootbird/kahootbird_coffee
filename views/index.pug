@@ -2,20 +2,5 @@ extends layout
 
 block content
   include header.pug
-  h1= title
-  p Welcome to kahootbirds #{title} coffee shop
   include navbar.pug
-  p bootstrap implemented here
-   button.btn.btn-primary.float-right.mt-4(id='btn', type='submit', disabled=true ) Next
-   br
-   | ok
-   br
-   |
-
-   <a class="btn btn-primary" href="/login" role="button">Login</a>
-   <a class="btn btn-primary" href="/dashboard" role="button">Dashboard</a>
-
-
-   //button.btn.btn-primary.float-right.mt-4(id='btn', type='submit', disabled=true ) Dashboard
-
    include footer.pug
