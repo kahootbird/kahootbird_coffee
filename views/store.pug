@@ -5,11 +5,14 @@ block content
   p Welcome to kahootbirds #{title} coffee shop
     include navbar.pug
   p STORE
-  br
-  |
-  p
-   button.btn.btn-primary.float-right.mt-4(id='btn', type='submit', disabled=true ) Next
 
+  .container
+    div(class='h1' id="h1")
+      img(src='images/coffeeshop2.png')
+      h2 item1forsale
+    div(class='h1' id="h1")
+      img(src='images/coffeeshop2.png')
+      h2 item2forsale
 
-   p This is the dashboard
-     include footer.pug
+  p This is the dashboard
+    include footer.pug
