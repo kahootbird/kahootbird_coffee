@@ -1,5 +1,5 @@
 //test commit
-
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -23,21 +23,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const mongoDb = "YOUR MONGO URL HERE";
-mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "mongo connection error"));
-
-const User = mongoose.model(
-  "User",
-  new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true }
-  })
-);
-
-/* END
-*/
 
 
 
@@ -57,6 +42,42 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 //app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+
+//console.log(process.env.SESSION_SECRET)
+
+
+/*
+const mongoDb = "YOUR MONGO URL HERE";
+mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "mongo connection error"));
+
+const User = mongoose.model(
+  "User",
+  new Schema({
+    username: { type: String, required: true },
+    password: { type: String, required: true }
+  })
+);
+*/
+
+/* END
+*/
+
+//MONGODB
+const { MongoClient } = require('mongodb');
+const uri = process.env.uri;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  console.log("CONNECTED")
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
 
 
 
