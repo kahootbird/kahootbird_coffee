@@ -47,36 +47,58 @@ app.set('view engine', 'ejs');
 
 //console.log(process.env.SESSION_SECRET)
 
-
-/*
-const mongoDb = "YOUR MONGO URL HERE";
-mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "mongo connection error"));
-
-const User = mongoose.model(
-  "User",
-  new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true }
-  })
-);
-*/
-
-/* END
-*/
-
+console.log(process.env.uri)
 //MONGODB
+
+
+var read
 const { MongoClient } = require('mongodb');
 const uri = process.env.uri;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   console.log("CONNECTED")
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+  //const collection = client.db("test").collection("devices");
+  var collection = client.db("test")
 
+/*
+    collection.collection('employees').insertOne({
+        Employeeid: 2,
+        EmployeeName: "NewEmployee2"
+    });
+*/
+
+    //console.log(collection.Employee.find({Employeeid :2 }))
+
+    //read = collection.collection('Employee').find();
+    read = collection.collection('employees').find({Employeeid: 2})
+    console.log("read:" + read)
+
+  // perform actions on the collection object
+  //client.close();
+
+});
+function show_find()
+{
+  console.log("read: " + read)
+
+read.forEach(item => {
+  console.log(item)
+})
+
+}
+setTimeout(show_find,5000)
+/*
+var MongoClient = require('mongodb').MongoClient;
+var url = process.env.uri;
+
+MongoClient.connect(url, function(err, db) {
+
+    db.collection('employees').insertOne({
+        Employeeid: 4,
+        EmployeeName: "NewEmployee"
+    });
+});
+*/
 
 
 
