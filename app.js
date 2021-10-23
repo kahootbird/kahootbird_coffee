@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 var storeRouter = require('./routes/store');
+var apiRouter = require('./routes/api');
+
 
 var login = require('./routes/login');
 const {v4: uuidv4} = require("uuid")
@@ -114,7 +116,7 @@ app.use('/users', usersRouter);
 app.use('/login', login);
 app.use('/dashboard', dashboardRouter);
 app.use('/store', storeRouter);
-
+app.use('/api', apiRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
