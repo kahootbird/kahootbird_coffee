@@ -55,7 +55,7 @@ console.log(process.env.uri)
 
 var read
 
-/*
+
 const { MongoClient } = require('mongodb');
 const uri = process.env.uri;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -64,20 +64,21 @@ client.connect(err => {
   //const collection = client.db("test").collection("devices");
   var collection = client.db("test")
 
-
-//    collection.collection('employees').insertOne({
-//        Employeeid: 2,
-//        EmployeeName: "NewEmployee2"
-//    });
-
+/*
+    collection.collection('author').insertOne({
+        Authorid: 1,
+        Author: "I am the author",
+        Post: "MyPost"
+    });
+*/
     //console.log(collection.Employee.find({Employeeid :2 }))
     //read = collection.collection('Employee').find();
-    read = collection.collection('employees').find({Employeeid: 2})
+    //read = collection.collection('employees').find({Employeeid: 2})
     console.log("read:" + read)
   // perform actions on the collection object
   //client.close();
 });
-*/
+
 function show_find()
 {
   console.log("read: " + read)
