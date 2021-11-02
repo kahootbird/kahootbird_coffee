@@ -1,10 +1,36 @@
-<!DOCTYPE html><html lang=""><head><meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="/favicon.ico"><title>client</title><link href="/css/app.fb0c6e1c.css" rel="preload" as="style">
-  <link href="/js/app.a390fa06.js" rel="preload" as="script">
-  <link href="/js/chunk-vendors.08fa42a9.js" rel="preload" as="script">
-  <link href="/css/app.fb0c6e1c.css" rel="stylesheet"></head><body><noscript>
-    <strong>We're sorry but client doesn't work properly without JavaScript enabled. Please enable it to continue.
-    </strong></noscript><div id="app"></div><script src="/js/chunk-vendors.08fa42a9.js"></script>
-    <script src="/js/app.a390fa06.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+
+    {{ message }}
+    <input v-model="message" placeholder="edit me">
+<p>Message is: {{ message }}</p>
+  </br>
+  <div v-if="post" class="content">
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.body }}</p>
+  </div>
+  <script>
+    console.log("FETCHING:")
+    fetch('http://localhost:3000/api')
+        .then(res => console.log(res))
+    //.then(res => res.json())
+    //.then(data => console.log(data))
+    </script>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+  </script>
+</body>
+</html>
