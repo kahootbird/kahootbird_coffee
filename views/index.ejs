@@ -7,22 +7,41 @@
 <body>
   <div id="app">
 
-    {{ message }}
     <input v-model="message" placeholder="edit me">
 <p>Message is: {{ message }}</p>
   </br>
-  <div v-if="post" class="content">
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.body }}</p>
+
+<!--
+POSTS: </br>
+    <div class="post2"
+    v-for="(post,index) in posts"
+    v-bind:item="post"
+    >
+        <p class="text"> {{post.text}} </p>
+      </div>
+-->
+
+
+
   </div>
-  <script>
-    console.log("FETCHING:")
-    fetch('http://localhost:3000/api')
-        .then(res => console.log(res))
-    //.then(res => res.json())
-    //.then(data => console.log(data))
-    </script>
-  </div>
+
+    <script>
+      console.log("FETCHING:")
+      var datas
+      //fetch('https://reqres.in/api/users')
+      fetch('http://localhost:3000/api')
+      //    .then(res => console.log(res))
+      .then(res => res.json())
+      .then(data => setdatas(data))
+      function setdatas(data)
+      {
+        datas = data
+        console.log(datas)
+      }
+      var post2 = "OKZZ"
+      //document.getElementById("post2").innerHTML = "OKZ"
+
+      </script>
 
   <script>
     var app = new Vue({

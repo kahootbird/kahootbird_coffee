@@ -129,7 +129,8 @@ console.log("POST OR GET: " + post_or_get)
     else
     {
       console.log("API call failed")
-      res.render('api', { post: "API call failed", author: "API call failed" });
+      //res.render('api', { post: "", author: "API call failed" });
+      res.json({post: "post1", post2: "post2", post3: "post3"})
     }
   });
 
