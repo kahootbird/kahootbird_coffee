@@ -9,9 +9,21 @@
 
     <input v-model="message" placeholder="edit me">
 <p>Message is: {{ message }}</p>
-  </br>
 
-<!--
+  <!--
+  <div v-if="post" class="content">
+
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.body }}</p>
+  </div>
+-->
+<ul id="example-1">
+  <li v-for="item in items" :key="item.message">
+    {{ item.message }}
+  </li>
+</ul>
+
+
 POSTS: </br>
     <div class="post2"
     v-for="(post,index) in posts"
@@ -19,7 +31,6 @@ POSTS: </br>
     >
         <p class="text"> {{post.text}} </p>
       </div>
--->
 
 
 
@@ -38,7 +49,7 @@ POSTS: </br>
         datas = data
         console.log(datas)
       }
-      var post2 = "OKZZ"
+
       //document.getElementById("post2").innerHTML = "OKZ"
 
       </script>
@@ -47,9 +58,31 @@ POSTS: </br>
     var app = new Vue({
       el: '#app',
       data: {
-        message: 'Hello Vue!'
-      }
-    })
+        message: 'Hello Vue!',
+/*
+        items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+    */
+    aa: "test"
+  },
+  methods: {
+    change_msg: function (event) {
+      // `this` inside methods point to the Vue instance
+      //alert('Hello ' + this.name + '!')
+      // `event` is the native DOM event
+      //alert(event.target.tagName)
+      //items = [{message: 'okchanged'}]
+      app.message = "NEW MSG"
+      console.log(app.aa)
+      alert(app.aa)
+    }
+  }
+    }
+    )
+    console.log("calling msg change")
+    app.change_msg()
   </script>
 </body>
 </html>
