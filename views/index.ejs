@@ -22,6 +22,11 @@
     {{ item.message }}
   </li>
 </ul>
+<ul id="post-msgs">
+  <li v-for="item in posts" :key="item.post">
+    {{ item }}
+  </li>
+</ul>
 
 
 POSTS: </br>
@@ -35,7 +40,7 @@ POSTS: </br>
 
 
   </div>
-
+<!--
     <script>
       console.log("FETCHING:")
       var datas
@@ -51,7 +56,7 @@ POSTS: </br>
       }
 
       //document.getElementById("post2").innerHTML = "OKZ"
-
+-->
       </script>
 
   <script>
@@ -59,30 +64,62 @@ POSTS: </br>
       el: '#app',
       data: {
         message: 'Hello Vue!',
-/*
-        items: [
-      { message: 'Foo' },
-      { message: 'Bar' }
-    ]
-    */
-    aa: "test"
-  },
-  methods: {
-    change_msg: function (event) {
-      // `this` inside methods point to the Vue instance
-      //alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
-      //alert(event.target.tagName)
-      //items = [{message: 'okchanged'}]
-      app.message = "NEW MSG"
-      console.log(app.aa)
-      alert(app.aa)
-    }
-  }
-    }
+      /*
+              items: [
+            { message: 'Foo' },
+            { message: 'Bar' }
+          ]
+          */
+          aa: "test",
+          posts: ["dpost1","dpost2","dpost3"],
+          post1: "p1",
+          post2: "p2",
+          post3: "p3"
+
+
+        },
+        methods: {
+          change_msg: function (event) {
+
+            app.message = "NEW MSG"
+            console.log(app.aa)
+            alert(app.aa)
+          },
+          call_fetch: function(event){
+              console.log("FETCHING:")
+              var datas
+              //fetch('https://reqres.in/api/users')
+              fetch('http://localhost:3000/api')
+              //    .then(res => console.log(res))
+              .then(res => res.json())
+              .then(data => setdatas(data))
+              function setdatas(data)
+              {
+                datas = data
+                console.log(datas)
+                //alert(datas.post2)
+                post1 = datas.post
+                post2 = datas.post2
+                post3 = datas.post3
+                posts = [post1,post2,post3]
+                console.log("END SETDATAS")
+                app.update_dom()
+              }
+              console.log("END CALLFETCH")
+              //document.getElementById("post2").innerHTML = "OKZ"
+
+          },
+          update_dom: function(event)
+          {
+            console.log("updated")
+          }
+            }
+          }
     )
     console.log("calling msg change")
     app.change_msg()
+    app.call_fetch()
+
   </script>
 </body>
 </html>
