@@ -14,21 +14,20 @@ router.get('/', function(req, res, next) {
     var post_or_get = null
     var collection = client.db("test")
 
+
     item_array = []
 
     if (req.query.type == 0)
       post_or_get = 0
     else if (req.query.type == 1)
       post_or_get = 1
+      //Delete record
+    else if (req.query.type == 2)
+      post_or_get = 2
 
-
-
-      //console.log("read:" + read)
-      //var z = read.length
       var zcount = 0
       console.log("read" + read)
-
-console.log("POST OR GET: " + post_or_get)
+      console.log("POST OR GET: " + post_or_get)
       //Read data
       if (post_or_get == 0)
       {
@@ -41,24 +40,13 @@ console.log("POST OR GET: " + post_or_get)
         res.render('api', { post: "added author", author: "added author" });
       }
       //Else write data
-      else if (post_or_get == 1){
-  //Read data from DB
-  read = collection.collection('author').find({Authorid: 1})
-  //read = collection.collection('author').find()
-  console.log("read author")
+  else if (post_or_get == 1)
+  {
+    //Read data from DB
+    read = collection.collection('author').find({Authorid: 1})
+    //read = collection.collection('author').find()
+    console.log("read author")
 
-  //Get the object size
-  /*
-  Object.size = function(obj) {
-  var size = 0,
-    key;
-  for (key in obj) {
-    //console.log("key is" + key + " STATE IS " + obj.hasOwnProperty(key))
-    if (obj.hasOwnProperty(key)) size++;
-  }
-  return size;
-};
-*/
         const myObj = {}
         //var size = Object.size(read);
         var size = 3
@@ -125,6 +113,11 @@ console.log("POST OR GET: " + post_or_get)
         }
         */
       })
+    }
+    else if (post_or_get == 2)
+    {
+      console.log("Delete API for record")
+      res.render('api', { post: "Delete_request", author: "Delete_request" });
     }
     else
     {
