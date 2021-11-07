@@ -116,7 +116,10 @@ router.get('/', function(req, res, next) {
     }
     else if (post_or_get == 2)
     {
+      if (req.query.id == null)
+      console.log("NO ID GIVEN")
       console.log("Delete API for record")
+      //read = collection.collection('author').find({Authorid: 1})
       res.render('api', { post: "Delete_request", author: "Delete_request" });
     }
     else
