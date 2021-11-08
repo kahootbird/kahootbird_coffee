@@ -130,7 +130,7 @@ POSTS: </br>
               console.log("FETCHING:")
               var datas
               //fetch('https://reqres.in/api/users')
-              fetch('http://localhost:3000/api')
+              fetch('http://localhost:3000/api?post=p&author=a&type=1')
               //    .then(res => console.log(res))
               .then(res => res.json())
               .then(data => setdatas(data))

@@ -43,26 +43,24 @@ router.get('/', function(req, res, next) {
   else if (post_or_get == 1)
   {
     //Read data from DB
-    read = collection.collection('author').find({Authorid: 1})
+    read = collection.collection('author').find({Authorid: 2})
     //read = collection.collection('author').find()
     console.log("read author")
-
         const myObj = {}
         //var size = Object.size(read);
         var size = 3
         console.log("SIZE TO READ IS:" + size)
-
         //Use object size to determine data to post
         var timeout_set = 0
         read.forEach(function(item, index)  {
         if (timeout_set == 0)
         {
+
           timeout_set = 1
           //set timeout not ideal on prod app over async/await but for this small-scale demo app it seems ok
           setTimeout(end_foreach,1000)
-        }
 
-        //z = read.length
+        }
         console.log("type " + typeof(item))
         item_array.push(item)
         //console.log("ITM: " + item)
@@ -90,8 +88,11 @@ router.get('/', function(req, res, next) {
               b++
           }
         }
+
           console.log("STR:" + str)
-          res.render('api', { post: str, author: "" });
+          console.log("STR0 " +str[0])
+          //res.render('api', { post: str, author: "" });
+          res.json({post: str[2], post2: str[5], post3: str[8]})
         }
         /*
         if (zcount == size)
@@ -118,6 +119,23 @@ router.get('/', function(req, res, next) {
     {
       if (req.query.id == null)
       console.log("NO ID GIVEN")
+      var id = parseInt(req.query.id)
+      if (Number.isInteger(id))
+      {
+          console.log("ID IS INTEGER:" + id)
+          var myquery = { Authorid: id }
+          read = collection.collection('author').deleteOne(myquery, function(err, obj) {
+          if (err) throw err;
+          console.log("1 document deleted");
+          //db.close();
+        });
+      }
+      else
+      {
+        console.log("ID NOT INT")
+      }
+
+      //console.log("ID IS:" + id)
       console.log("Delete API for record")
       //read = collection.collection('author').find({Authorid: 1})
       res.render('api', { post: "Delete_request", author: "Delete_request" });
