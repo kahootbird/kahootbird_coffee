@@ -21,8 +21,10 @@
 <body>
   <div id="app">
 
-    <input v-model="message" placeholder="edit me">
-<p>Message is: {{ message }}</p>
+</br>
+<center>
+  <h1>The App </h1>
+</center>
 
   <!--
   <div v-if="post" class="content">
@@ -69,8 +71,16 @@
   </li>
 </ul>
 -->
+<center>
+<p>Enter new message to post</p>
 
-POSTS: </br>
+<input v-model="msg1" placeholder="Author" id="author" ref="my_input">
+<input v-model="msg2" placeholder="Post" id="post">
+</br>
+
+<button class="btn btn-success" onclick="app.item_submitted()"> Submit </button>
+ </br>
+</center>
     <div class="post2"
     v-for="(post,index) in posts"
     v-bind:item="post"
@@ -122,10 +132,43 @@ POSTS: </br>
         methods: {
           change_msg: function (event) {
 
-            app.message = "NEW MSG"
+            //app.message = "NEW MSG"
             console.log(app.aa)
-            alert(app.aa)
+            //alert(app.aa)
           },
+          item_submitted: function(){
+            //Submit data
+            //console.log(@my_input)
+            /*
+            console.log("FETCHING:")
+            var datas
+            //fetch('https://reqres.in/api/users')
+            fetch('http://localhost:3000/api?post=p&author=a&type=1')
+            //    .then(res => console.log(res))
+            .then(res => res.json())
+            .then(data => setdatas(data))
+            function setdatas(data)
+            {
+              datas = data
+              console.log(datas)
+              //alert(datas.post2)
+              post1 = datas.post
+              post2 = datas.post2
+              post3 = datas.post3
+              app.posts = [datas.post,datas.post2,datas.post3]
+              //app.posts.push("")
+              console.log("END SETDATAS")
+              app.update_dom()
+            }
+            console.log("END CALLFETCH")
+*/
+
+            //Call fetch
+            //app.call_fetch()
+            //After finished, reload authors table display
+
+          },
+
           call_fetch: function(event){
               console.log("FETCHING:")
               var datas
