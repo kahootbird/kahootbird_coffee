@@ -43,7 +43,11 @@
   <div v-for="item in posts" :key="item.post" id="post-msgs" class="col-md-8">
 
     <div class="container-fluid">
+
       <div class="card mb-3" style="background-color: #40bf40;">
+        <div class="container" style="margin-right: 0;">
+        <button class="btn btn-success" onclick="app.delete_post()">X</button>
+        </div>
       <div class="row no-gutters">
         <div class="col-md-4">
 
@@ -75,7 +79,7 @@
 <p>Enter new message to post</p>
 
 <input v-model="msg1" placeholder="Author" id="author" ref="my_input">
-<input v-model="msg2" placeholder="Post" id="post">
+<input v-model="msg2" placeholder="Post" id="post" ref="msg2">
 </br>
 
 <button class="btn btn-success" onclick="app.item_submitted()"> Submit </button>
@@ -136,14 +140,20 @@
             console.log(app.aa)
             //alert(app.aa)
           },
+          delete_post: function()
+          {
+            console.log("DELETE THIS AUTHOR")
+          },
           item_submitted: function(){
             //Submit data
             //console.log(@my_input)
-            /*
+            let a = document.getElementById("author").value
+            let p = document.getElementById("post").value
+
             console.log("FETCHING:")
             var datas
             //fetch('https://reqres.in/api/users')
-            fetch('http://localhost:3000/api?post=p&author=a&type=1')
+            fetch('http://localhost:3000/api?post=" + a + "&author=" + p + "&type=0')
             //    .then(res => console.log(res))
             .then(res => res.json())
             .then(data => setdatas(data))
@@ -161,7 +171,7 @@
               app.update_dom()
             }
             console.log("END CALLFETCH")
-*/
+
 
             //Call fetch
             //app.call_fetch()
