@@ -40,13 +40,13 @@
   </div>
 -->
 
-  <div v-for="item in posts" :key="item.post" id="post-msgs" class="col-md-8">
+  <div v-for="(item,index) in posts" :key="item.post" id="post-msgs" class="col-md-8">
 
     <div class="container-fluid">
 
       <div class="card mb-3" style="background-color: #40bf40;">
         <div class="container" style="margin-right: 0;">
-        <button class="btn btn-success" onclick="app.delete_post()">X</button>
+        <button class="btn btn-success" v-on:click="delete_post(index)">X</button>
         </div>
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -135,22 +135,22 @@
         },
         methods: {
           change_msg: function (event) {
-
-            //app.message = "NEW MSG"
             console.log(app.aa)
-            //alert(app.aa)
           },
-          delete_post: function()
+          delete_post: function(index)
           {
-            console.log("DELETE THIS AUTHOR")
+            //console.log("DELETE THIS AUTHOR")
+            app.posts.splice(index,1)
+
           },
           item_submitted: function(){
             //Submit data
             //console.log(@my_input)
             let a = document.getElementById("author").value
             let p = document.getElementById("post").value
-
+            console.log(a + p)
             console.log("FETCHING:")
+
             var datas
             //fetch('https://reqres.in/api/users')
             fetch('http://localhost:3000/api?post=" + a + "&author=" + p + "&type=0')
@@ -168,7 +168,7 @@
               app.posts = [datas.post,datas.post2,datas.post3]
               //app.posts.push("")
               console.log("END SETDATAS")
-              app.update_dom()
+
             }
             console.log("END CALLFETCH")
 
@@ -198,16 +198,13 @@
                 app.posts = [datas.post,datas.post2,datas.post3]
                 //app.posts.push("")
                 console.log("END SETDATAS")
-                app.update_dom()
+
               }
               console.log("END CALLFETCH")
               //document.getElementById("post2").innerHTML = "OKZ"
 
           },
-          update_dom: function(event)
-          {
-            console.log("updated")
-          }
+
             }
           }
     )
