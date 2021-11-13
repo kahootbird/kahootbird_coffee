@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
       {
         //Get data from DB
         collection.collection('author').insertOne({
-            Authorid: 2,
+            Authorid: 1,
             Author: "I am the author",
             Post: "MyPost"
         });
@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
   else if (post_or_get == 1)
   {
     //Read data from DB
-    read = collection.collection('author').find({Authorid: 2})
+    read = collection.collection('author').find({Authorid: 1})
     //read = collection.collection('author').find()
     console.log("read author")
         const myObj = {}

@@ -150,7 +150,6 @@
             let p = document.getElementById("post").value
             console.log(a + p)
             console.log("FETCHING:")
-
             var datas
             //fetch('https://reqres.in/api/users')
             fetch('http://localhost:3000/api?post=" + a + "&author=" + p + "&type=0')
@@ -168,9 +167,8 @@
               app.posts = [datas.post,datas.post2,datas.post3]
               //app.posts.push("")
               console.log("END SETDATAS")
-
             }
-            console.log("END CALLFETCH")
+            //console.log("END CALLFETCH")
 
 
             //Call fetch
@@ -189,19 +187,34 @@
               .then(data => setdatas(data))
               function setdatas(data)
               {
+
                 datas = data
                 console.log(datas)
                 //alert(datas.post2)
                 post1 = datas.post
                 post2 = datas.post2
                 post3 = datas.post3
-                app.posts = [datas.post,datas.post2,datas.post3]
+                if (data.post == null)
+                {
+
+                    app.posts = ["ALL NULL","",""]
+                }
+                else if (data.post2 == null)
+                {
+
+                    app.posts = [datas.post]
+                }
+                else if (data.post3 == null)
+                {
+                  app.posts = [datas.post,datas.post2]
+                }
+                else {
+                  app.posts = [datas.post,datas.post2,datas.post3]
+                }
                 //app.posts.push("")
                 console.log("END SETDATAS")
-
               }
               console.log("END CALLFETCH")
-              //document.getElementById("post2").innerHTML = "OKZ"
 
           },
 
