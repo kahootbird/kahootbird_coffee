@@ -139,13 +139,16 @@
           },
           delete_post: function(index)
           {
+            
             //console.log("DELETE THIS AUTHOR")
+            fetch('http://localhost:3000/api?post=" + "&type=2&id=' + (index+1))
             app.posts.splice(index,1)
+            app.posts = app.posts
+
 
           },
           item_submitted: function(){
-            //Submit data
-            //console.log(@my_input)
+          //When submit button is clicked
             let a = document.getElementById("author").value
             let p = document.getElementById("post").value
             console.log(a + p)
@@ -154,8 +157,10 @@
             //fetch('https://reqres.in/api/users')
             fetch('http://localhost:3000/api?post=" + a + "&author=" + p + "&type=0')
             //    .then(res => console.log(res))
-            .then(res => res.json())
-            .then(data => setdatas(data))
+            //.then(res => res.json())
+            //.then(data => setdatas(data))
+            app.call_fetch()
+            /*
             function setdatas(data)
             {
               datas = data
@@ -168,6 +173,7 @@
               //app.posts.push("")
               console.log("END SETDATAS")
             }
+            */
             //console.log("END CALLFETCH")
 
 
@@ -178,7 +184,7 @@
           },
 
           call_fetch: function(event){
-              console.log("FETCHING:")
+              console.log("CALL_FETCH:")
               var datas
               //fetch('https://reqres.in/api/users')
               fetch('http://localhost:3000/api?post=p&author=a&type=1')
