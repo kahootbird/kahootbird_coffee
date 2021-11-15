@@ -31,11 +31,17 @@ router.get('/', function(req, res, next) {
       //Read data
       if (post_or_get == 0)
       {
+        let author = ""
+        let post = ""
+        if (req.query.author != null)
+        author = req.query.author
+        if (req.query.post != null)
+        post = req.query.post;
         //Get data from DB
         collection.collection('author').insertOne({
             Authorid: 1,
-            Author: "I am the author",
-            Post: "MyPost"
+            Author: author,
+            Post: post
         });
         res.render('api', { post: "added author", author: "added author" });
       }
@@ -71,6 +77,7 @@ router.get('/', function(req, res, next) {
         {
           var b = 0
           var str = []
+          let auth_str = []
           console.log("END FOREACH")
           for (var z in item_array)
           {
@@ -88,11 +95,13 @@ router.get('/', function(req, res, next) {
               b++
           }
         }
+        //author
+          //console.log("STR:" + str[1] + ", " + str[4] + ", " + str[8])
 
           console.log("STR:" + str)
           console.log("STR0 " +str[0])
           //res.render('api', { post: str, author: "" });
-          res.json({post: str[2], post2: str[5], post3: str[8]})
+          res.json({post: str[2], post2: str[5], post3: str[8], author: str[1], author2: str[4], author3: str[8]})
         }
         /*
         if (zcount == size)

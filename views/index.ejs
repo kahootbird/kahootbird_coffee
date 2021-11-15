@@ -139,13 +139,10 @@
           },
           delete_post: function(index)
           {
-            
             //console.log("DELETE THIS AUTHOR")
             fetch('http://localhost:3000/api?post=" + "&type=2&id=' + (index+1))
             app.posts.splice(index,1)
             app.posts = app.posts
-
-
           },
           item_submitted: function(){
           //When submit button is clicked
