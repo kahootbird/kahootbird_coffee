@@ -48,6 +48,21 @@ router.get('/', function(req, res, next) {
       //Else write data
   else if (post_or_get == 1)
   {
+/*
+    var db_empty = 0
+    collection.count(function (err, count) {
+    if (!err && count === 0) {
+        db_empty = 1
+    }
+  })
+    if (db_empty == 1)
+    {
+    console.log("NOT EMPTY")
+    }
+    else {
+      console.log("EMPTY")
+    }
+    */
     //Read data from DB
     read = collection.collection('author').find({Authorid: 1})
     //read = collection.collection('author').find()
@@ -58,6 +73,9 @@ router.get('/', function(req, res, next) {
         console.log("SIZE TO READ IS:" + size)
         //Use object size to determine data to post
         var timeout_set = 0
+        console.log("READ" + read.length)
+
+
         read.forEach(function(item, index)  {
         if (timeout_set == 0)
         {
