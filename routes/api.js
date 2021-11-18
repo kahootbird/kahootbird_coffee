@@ -48,6 +48,7 @@ router.get('/', function(req, res, next) {
       //Else write data
   else if (post_or_get == 1)
   {
+
 /*
     var db_empty = 0
     collection.count(function (err, count) {
@@ -64,6 +65,34 @@ router.get('/', function(req, res, next) {
     }
     */
     //Read data from DB
+
+    var is_empty = false
+    z = collection.collection('author').find({Authorid: 1})
+    z.count(function (err, count) {
+      console.log("COUNTbbbb" + count)
+
+      if (count == 0)
+      {
+      is_empty = true
+      console.log("SET TO TRUE - EMPTY")
+      res.json({none: ""})
+      console.log("RENDERED")
+      }
+      else {
+        console.log("SET TO FALSE - NOT EMPTY")
+      }
+});
+
+//is_empty = true
+
+/*
+    test = collection.collection('author').find({Authorid: 1})
+    test.forEach(function(item, index)  {
+      console.log("ITEMSb:" + item + " " + index)
+
+    })
+*/
+
     read = collection.collection('author').find({Authorid: 1})
     //read = collection.collection('author').find()
     console.log("read author")
@@ -77,6 +106,7 @@ router.get('/', function(req, res, next) {
 
 
         read.forEach(function(item, index)  {
+          console.log("FOREACH START")
         if (timeout_set == 0)
         {
 
@@ -119,7 +149,13 @@ router.get('/', function(req, res, next) {
           console.log("STR:" + str)
           console.log("STR0 " +str[0])
           //res.render('api', { post: str, author: "" });
+          if (is_empty == false)
+          {
           res.json({post: str[2], post2: str[5], post3: str[8], author: str[1], author2: str[4], author3: str[8]})
+          }
+          else {
+            console.log("NOT EMPTY")
+          }
         }
         /*
         if (zcount == size)

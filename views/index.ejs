@@ -152,7 +152,7 @@
             console.log("FETCHING:")
             var datas
             //fetch('https://reqres.in/api/users')
-            fetch('http://localhost:3000/api?post=" + a + "&author=" + p + "&type=0')
+            fetch('http://localhost:3000/api?post=' + a + '&author=' + p + '&type=0')
             //    .then(res => console.log(res))
             //.then(res => res.json())
             //.then(data => setdatas(data))
@@ -200,7 +200,7 @@
                 if (data.post == null)
                 {
 
-                    app.posts = ["ALL NULL","",""]
+                    app.posts = []
                 }
                 else if (data.post2 == null)
                 {
