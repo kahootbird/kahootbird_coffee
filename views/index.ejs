@@ -139,10 +139,13 @@
           },
           delete_post: function(index)
           {
+            console.log("INDEX" + index)
+            console.log('http://localhost:3000/api?post=' + '&type=2&id=' + (index))
             //console.log("DELETE THIS AUTHOR")
-            fetch('http://localhost:3000/api?post=" + "&type=2&id=' + (index+1))
-            app.posts.splice(index,1)
-            app.posts = app.posts
+            fetch('http://localhost:3000/api?post=1&type=2&id=' + (index))
+            //app.posts.splice(index,1)
+            //app.posts = app.posts
+            setTimeout(1500,app.call_fetch())
           },
           item_submitted: function(){
           //When submit button is clicked

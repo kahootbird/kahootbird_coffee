@@ -38,15 +38,33 @@ router.get('/', function(req, res, next) {
         if (req.query.post != null)
         post = req.query.post;
         //Get data from DB
-        collection.collection('author').insertOne({
-            Authorid: 1,
-            Author: author,
-            Post: post
-        });
-        res.render('api', { post: "added author", author: "added author" });
-      }
+
+        var get_post_num = collection.collection('author').find()
+        var test_count = 0
+        get_post_num.count(function (err, count) {
+          console.log("TEST COUNT" + count)
+          test_count = count
+          if (test_count < 3)
+          {
+
+
+            collection.collection('author').insertOne({
+                Authorid: test_count,
+                Author: author,
+                Post: post
+            });
+            res.render('api', { post: "added author", author: "added author" });
+          }
+          else {
+              res.render('api', { post: "add author failed", author: "add author failed" });
+          }
+        })
+
+
+    }
+
       //Else write data
-  else if (post_or_get == 1)
+  if (post_or_get == 1)
   {
 
 /*
@@ -67,7 +85,7 @@ router.get('/', function(req, res, next) {
     //Read data from DB
 
     var is_empty = false
-    z = collection.collection('author').find({Authorid: 1})
+    z = collection.collection('author').find()
     z.count(function (err, count) {
       console.log("COUNTbbbb" + count)
 
@@ -93,7 +111,7 @@ router.get('/', function(req, res, next) {
     })
 */
 
-    read = collection.collection('author').find({Authorid: 1})
+    read = collection.collection('author').find()
     //read = collection.collection('author').find()
     console.log("read author")
         const myObj = {}
