@@ -54,7 +54,6 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Author:</h5>
             <p class="card-text">
                {{ item }}
             </p>
@@ -126,6 +125,11 @@
           ]
           */
           aa: "test",
+          msg1: [],
+          msg2: [],
+
+
+
           posts: ["","",""],
           post1: "p1",
           post2: "p2",
@@ -145,7 +149,7 @@
             fetch('http://localhost:3000/api?post=1&type=2&id=' + (index))
             //app.posts.splice(index,1)
             //app.posts = app.posts
-            setTimeout(1500,app.call_fetch())
+              setTimeout(function(){app.call_fetch()},1200)
           },
           item_submitted: function(){
           //When submit button is clicked
@@ -159,7 +163,9 @@
             //    .then(res => console.log(res))
             //.then(res => res.json())
             //.then(data => setdatas(data))
-            app.call_fetch()
+            console.log("SET TIMEOUT")
+            setTimeout(function(){app.call_fetch()},1200)
+            //app.call_fetch()
             /*
             function setdatas(data)
             {
@@ -193,13 +199,11 @@
               .then(data => setdatas(data))
               function setdatas(data)
               {
-
                 datas = data
                 console.log(datas)
                 //alert(datas.post2)
-                post1 = datas.post
-                post2 = datas.post2
-                post3 = datas.post3
+                var a = "Author: "
+                var p = "Post: "
                 if (data.post == null)
                 {
 
@@ -208,16 +212,18 @@
                 else if (data.post2 == null)
                 {
 
-                    app.posts = [datas.post]
+                    app.posts = [(a+datas.author+p+datas.post)]
                 }
                 else if (data.post3 == null)
                 {
-                  app.posts = [datas.post,datas.post2]
+                  app.posts = [(a+datas.author+p+datas.post),(a+datas.author2+p+datas.post2)]
                 }
                 else {
-                  app.posts = [datas.post,datas.post2,datas.post3]
+                  app.posts = [(a+datas.author+p+datas.post),(a+datas.author2+p+datas.post2),(a+datas.author3+p+datas.post3)]
                 }
+                //app.posts = ["OK","OK2","OK3"]
                 //app.posts.push("")
+
                 console.log("END SETDATAS")
               }
               console.log("END CALLFETCH")
@@ -229,7 +235,7 @@
     )
     console.log("calling msg change")
     app.change_msg()
-    app.call_fetch()
+    setTimeout(function(){app.call_fetch()},1200)
 
   </script>
 </body>
