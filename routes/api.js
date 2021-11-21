@@ -41,24 +41,52 @@ router.get('/', function(req, res, next) {
 
         var get_post_num = collection.collection('author').find()
         var test_count = 0
-        get_post_num.count(function (err, count) {
-          console.log("TEST COUNT" + count)
-          test_count = count
-          if (test_count < 3)
-          {
-
-
-            collection.collection('author').insertOne({
-                Authorid: test_count,
-                Author: author,
-                Post: post
-            });
-            res.render('api', { post: "added author", author: "added author" });
-          }
-          else {
-              res.render('api', { post: "add author failed", author: "add author failed" });
-          }
+        var ids = []
+          setTimeout(count_with_ids,1000)
+        get_post_num.forEach(function(item, index)  {
+          console.log("FOR EACH:")
+          console.log(item.Authorid)
+          ids.push(item.Authorid)
         })
+
+
+                  function count_with_ids()
+                  {
+                    get_post_num.count(function (err, count) {
+                      console.log("TEST COUNT" + count)
+                      test_count = count
+
+                      if (test_count < 3)
+                      {
+                        var proper_id = 0
+                        //Find the empty of 0,1,2 numbers to add a new post ID to
+                        if (ids[0] != 0 && ids[1] != 0 && ids[2] != 0)
+                        {
+                          proper_id = 0
+                        }
+                        else if (ids[0] != 1 && ids[1] != 1 && ids[2] != 1)
+                        {
+                          proper_id = 1
+                        }
+                        else if (ids[0] != 2 && ids[1] != 2 && ids[2] != 2)
+                        {
+                          proper_id = 2
+                        }
+
+                        collection.collection('author').insertOne({
+                            //Authorid: test_count,
+                            Authorid: proper_id,
+                            Author: author,
+                            Post: post
+                        });
+                        res.render('api', { post: "added author", author: "added author" });
+                      }
+                      else {
+                          res.render('api', { post: "add author failed", author: "add author failed" });
+                      }
+                    })
+
+                  }
 
 
     }
@@ -166,10 +194,12 @@ router.get('/', function(req, res, next) {
 
           console.log("STR:" + str)
           console.log("STR0 " +str[0])
+          console.log("ID" + str[0] + " " + str[3] + " " + str[6])
           //res.render('api', { post: str, author: "" });
           if (is_empty == false)
           {
-          res.json({post: str[2], post2: str[5], post3: str[8], author: str[1], author2: str[4], author3: str[8]})
+          res.json({post: str[2], post2: str[5], post3: str[8], author: str[1], author2: str[4], author3: str[7],
+                    id1: str[0], id2: str[3], id3: str[6]})
           }
           else {
             console.log("NOT EMPTY")

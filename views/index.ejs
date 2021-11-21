@@ -133,6 +133,8 @@
           posts: ["","",""],
           post1: "p1",
           post2: "p2",
+
+          id_delete_array_index: [],
           post3: "p3"
 
 
@@ -146,7 +148,7 @@
             console.log("INDEX" + index)
             console.log('http://localhost:3000/api?post=' + '&type=2&id=' + (index))
             //console.log("DELETE THIS AUTHOR")
-            fetch('http://localhost:3000/api?post=1&type=2&id=' + (index))
+            fetch('http://localhost:3000/api?post=1&type=2&id=' + (id_delete_array_index[index]))
             //app.posts.splice(index,1)
             //app.posts = app.posts
               setTimeout(function(){app.call_fetch()},1200)
@@ -204,22 +206,31 @@
                 //alert(datas.post2)
                 var a = "Author: "
                 var p = "Post: "
+                id_delete_array_index = []
+                /*
+                if (data.post != null)
+                id_delete_array_index.push(0)
+                if (data.post2 != null)
+                id_delete_array_index.push(1)
+                if (data.post3 != null)
+                id_delete_array_index.push(2)
+                */
+                id_delete_array_index = [datas.id1,datas.id2,datas.id3]
+                console.log("IDS:" + id_delete_array_index)
                 if (data.post == null)
                 {
-
                     app.posts = []
                 }
                 else if (data.post2 == null)
                 {
-
-                    app.posts = [(a+datas.author+p+datas.post)]
+                    app.posts = [(a+datas.post+p+datas.author)]
                 }
                 else if (data.post3 == null)
                 {
-                  app.posts = [(a+datas.author+p+datas.post),(a+datas.author2+p+datas.post2)]
+                  app.posts = [(a+datas.post+p+datas.author),(a+datas.post2+p+datas.author2)]
                 }
                 else {
-                  app.posts = [(a+datas.author+p+datas.post),(a+datas.author2+p+datas.post2),(a+datas.author3+p+datas.post3)]
+                  app.posts = [(a+datas.post+p+datas.author),(a+datas.post2+p+datas.author2),(a+datas.post3+p+datas.author3)]
                 }
                 //app.posts = ["OK","OK2","OK3"]
                 //app.posts.push("")
