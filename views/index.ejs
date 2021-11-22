@@ -13,6 +13,11 @@
     {
       background-color: #00ff00
     }
+
+    div.a {
+  text-align: center;
+}
+
     </style>
 
   <title>My first Vue app</title>
@@ -23,110 +28,72 @@
 
 </br>
 <center>
-  <h1>The App </h1>
+  <h1>Mini Message Board App </h1>
 </center>
 
-  <!--
-  <div v-if="post" class="content">
 
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.body }}</p>
-  </div>
--->
-
-<!--
-<div class="green_rectangle">
-  GREEN RECT
-  </div>
--->
-
-  <div v-for="(item,index) in posts" :key="item.post" id="post-msgs" class="col-md-8">
+  <div v-for="(item,index) in posts" :key="item.post" id="post-msgs" class="a">
     <div class="container-fluid">
       <div class="card mb-3" style="background-color: #40bf40;">
-        <div class="container" style="margin-right: 0;">
+        <div class="container" style="text-align: left">
         <button class="btn btn-success" v-on:click="delete_post(index)">X</button>
         </div>
       <div class="row no-gutters">
-        <div class="col-md-4">
 
-        </div>
-        <div class="col-md-8">
+
           <div class="card-body">
             <p class="card-text">
+              <h1>
               Author: {{ authors[index]}}
              </br>
-
                {{ item }}
+            </h1>
             </p>
 
-          </div>
         </div>
       </div>
     </div>
-
     </div>
+  </div>
+
+
+
+
+  <center>
+  <p>Enter new message to post (up to 3)</p>
+
+
+  <input v-model="msg1" placeholder="Author" id="author" ref="my_input" maxlength="20">
+  <input v-model="msg2" placeholder="Post" id="post" ref="msg2" maxlength="20">
+  </br>
+
+  <button class="btn btn-success" onclick="app.item_submitted()"> Submit </button>
+   </br>
+  </center>
+      <div class="post2"
+      v-for="(post,index) in posts"
+      v-bind:item="post">
+
+          <p class="text"> {{post.text }} </p>
+        </div>
+
+
+
+
+
+
+
 
   </div>
-<!--
-<ul id="post-msgs">
-  <li v-for="item in posts" :key="item.post">
 
-    {{ item }}
-  </li>
-</ul>
--->
-<center>
-<p>Enter new message to post (up to 3)</p>
-
-
-<input v-model="msg1" placeholder="Author" id="author" ref="my_input">
-<input v-model="msg2" placeholder="Post" id="post" ref="msg2">
-</br>
-
-<button class="btn btn-success" onclick="app.item_submitted()"> Submit </button>
- </br>
-</center>
-    <div class="post2"
-    v-for="(post,index) in posts"
-    v-bind:item="post">
-
-        <p class="text"> {{post.text }} </p>
-      </div>
-
-
-
-
-  </div>
-<!--
-    <script>
-      console.log("FETCHING:")
-      var datas
-      //fetch('https://reqres.in/api/users')
-      fetch('http://localhost:3000/api')
-      //    .then(res => console.log(res))
-      .then(res => res.json())
-      .then(data => setdatas(data))
-      function setdatas(data)
-      {
-        datas = data
-        console.log(datas)
-      }
-
-      //document.getElementById("post2").innerHTML = "OKZ"
--->
-      </script>
+  </script>
 
   <script>
     var app = new Vue({
       el: '#app',
       data: {
         message: 'Hello Vue!',
-      /*
-              items: [
-            { message: 'Foo' },
-            { message: 'Bar' }
-          ]
-          */
+
           aa: "test",
           msg1: [],
           msg2: [],
