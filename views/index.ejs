@@ -41,9 +41,7 @@
 -->
 
   <div v-for="(item,index) in posts" :key="item.post" id="post-msgs" class="col-md-8">
-
     <div class="container-fluid">
-
       <div class="card mb-3" style="background-color: #40bf40;">
         <div class="container" style="margin-right: 0;">
         <button class="btn btn-success" v-on:click="delete_post(index)">X</button>
@@ -55,6 +53,9 @@
         <div class="col-md-8">
           <div class="card-body">
             <p class="card-text">
+              Author: {{ authors[index]}}
+             </br>
+
                {{ item }}
             </p>
 
@@ -75,7 +76,8 @@
 </ul>
 -->
 <center>
-<p>Enter new message to post</p>
+<p>Enter new message to post (up to 3)</p>
+
 
 <input v-model="msg1" placeholder="Author" id="author" ref="my_input">
 <input v-model="msg2" placeholder="Post" id="post" ref="msg2">
@@ -86,10 +88,11 @@
 </center>
     <div class="post2"
     v-for="(post,index) in posts"
-    v-bind:item="post"
-    >
-        <p class="text"> {{post.text}} </p>
+    v-bind:item="post">
+
+        <p class="text"> {{post.text }} </p>
       </div>
+
 
 
 
@@ -131,6 +134,7 @@
 
 
           posts: ["","",""],
+          authors: ["","",""],
           post1: "p1",
           post2: "p2",
 
@@ -216,6 +220,8 @@
                 id_delete_array_index.push(2)
                 */
                 id_delete_array_index = [datas.id1,datas.id2,datas.id3]
+                app.authors = [datas.post,datas.post2,datas.post3]
+                //app.authors = ["1","2","3"]
                 console.log("IDS:" + id_delete_array_index)
                 if (data.post == null)
                 {
@@ -223,14 +229,14 @@
                 }
                 else if (data.post2 == null)
                 {
-                    app.posts = [(a+datas.post+p+datas.author)]
+                    app.posts = [(p+datas.author)]
                 }
                 else if (data.post3 == null)
                 {
-                  app.posts = [(a+datas.post+p+datas.author),(a+datas.post2+p+datas.author2)]
+                  app.posts = [(p+datas.author),(p+datas.author2)]
                 }
                 else {
-                  app.posts = [(a+datas.post+p+datas.author),(a+datas.post2+p+datas.author2),(a+datas.post3+p+datas.author3)]
+                  app.posts = [(p+datas.author),(p+datas.author2),(p+datas.author3)]
                 }
                 //app.posts = ["OK","OK2","OK3"]
                 //app.posts.push("")
