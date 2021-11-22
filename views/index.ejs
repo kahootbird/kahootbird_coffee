@@ -117,9 +117,9 @@
           delete_post: function(index)
           {
             console.log("INDEX" + index)
-            console.log('http://localhost:3000/api?post=' + '&type=2&id=' + (index))
+            console.log('/api?post=' + '&type=2&id=' + (index))
             //console.log("DELETE THIS AUTHOR")
-            fetch('http://localhost:3000/api?post=1&type=2&id=' + (id_delete_array_index[index]))
+            fetch('/api?post=1&type=2&id=' + (id_delete_array_index[index]))
             //app.posts.splice(index,1)
             //app.posts = app.posts
               setTimeout(function(){app.call_fetch()},1200)
@@ -132,7 +132,7 @@
             console.log("FETCHING:")
             var datas
             //fetch('https://reqres.in/api/users')
-            fetch('http://localhost:3000/api?post=' + a + '&author=' + p + '&type=0')
+            fetch('/api?post=' + a + '&author=' + p + '&type=0')
             //    .then(res => console.log(res))
             //.then(res => res.json())
             //.then(data => setdatas(data))
@@ -166,7 +166,7 @@
               console.log("CALL_FETCH:")
               var datas
               //fetch('https://reqres.in/api/users')
-              fetch('http://localhost:3000/api?post=p&author=a&type=1')
+              fetch('api?post=p&author=a&type=1')
               //    .then(res => console.log(res))
               .then(res => res.json())
               .then(data => setdatas(data))
